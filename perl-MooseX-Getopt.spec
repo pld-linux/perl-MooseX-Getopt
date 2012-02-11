@@ -8,13 +8,13 @@
 Summary:	MooseX::Getopt - A Moose role for processing command line options
 Summary(pl.UTF-8):	MooseX::Getopt - narzędzie Moose do przetwarzania opcji z linii komend
 Name:		perl-MooseX-Getopt
-Version:	0.38
+Version:	0.39
 Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/MooseX/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	745916eaa9b633aafdbdcd0cfed92071
+# Source0-md5:	f4e6ffb5794335eb6222dd822357687a
 URL:		http://search.cpan.org/dist/MooseX-Getopt/
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -23,6 +23,7 @@ BuildRequires:	perl(Getopt::Long::Descriptive) >= 0.081
 BuildRequires:	perl-Moose >= 0.56
 BuildRequires:	perl-MooseX-Role-Parameterized
 BuildRequires:	perl-Test-Exception >= 0.21
+BuildRequires:	perl-Test-Requires
 %endif
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
