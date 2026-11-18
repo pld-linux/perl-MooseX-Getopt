@@ -7,15 +7,14 @@
 Summary:	MooseX::Getopt - A Moose role for processing command line options
 Summary(pl.UTF-8):	MooseX::Getopt - narzędzie Moose do przetwarzania opcji z linii poleceń
 Name:		perl-MooseX-Getopt
-Version:	0.75
+Version:	0.78
 Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
-Source0:	http://www.cpan.org/modules/by-module/MooseX/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	1b9112b9b8723bf2ec225a0fa09285f1
+Source0:	https://www.cpan.org/modules/by-module/MooseX/%{pdir}-%{pnam}-%{version}.tar.gz
+# Source0-md5:	6d0ace976fe24b98f7da3a93a4c4eb87
 URL:		https://metacpan.org/dist/MooseX-Getopt
-BuildRequires:	perl-ExtUtils-MakeMaker
 BuildRequires:	perl-Module-Build-Tiny >= 0.034
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -30,12 +29,12 @@ BuildRequires:	perl-MooseX-Role-Parameterized >= 1.01
 BuildRequires:	perl-Path-Tiny >= 0.009
 BuildRequires:	perl-Scalar-List-Utils
 BuildRequires:	perl-Test-Deep
-BuildRequires:	perl-Test-Exception >= 0.21
 BuildRequires:	perl-Test-Fatal
 BuildRequires:	perl-Test-Needs
 BuildRequires:	perl-Test-Simple >= 0.88
 BuildRequires:	perl-Test-Trap
 BuildRequires:	perl-Test-Warnings >= 0.009
+BuildRequires:	perl-Test2-Suite
 BuildRequires:	perl-Try-Tiny
 BuildRequires:	perl-namespace-autoclean
 %endif
@@ -54,17 +53,18 @@ obiektów korzystających z parametrów przekazanych z linii poleceń.
 %setup -q -n %{pdir}-%{pnam}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	INSTALLDIRS=vendor
-%{__make}
+%{__perl} Build.PL \
+	--perl=%{__perl} \
+	--installdirs=vendor
+./Build
 
-%{?with_tests:%{__make} test}
+%{?with_tests:./Build test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} pure_install \
-	DESTDIR=$RPM_BUILD_ROOT
+./Build install \
+	--destdir=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
